@@ -54,7 +54,7 @@ ansible_python_interpreter=/usr/bin/python3
 * Stop Nginx Service
 ``` ansible-playbook -i inventory.cfg nginx_uninstall.yml -b -u vlad -K ``` while starting enter us
 er password 
-* 4. Create Cinfig for NGINX
+* 4. Create Config for NGINX
 * Create conf file "static_site.cnf"
 User "vlad" hardcoded!
 * Create dir "/static-site-src" with website pages "index.html"
@@ -64,4 +64,14 @@ Path to user "vlad" dir hardcoded by user name "vlad"!
 ``` ansible-playbook -i inventory.cfg  --limit 192.168.56.104 nginx.yml -K -u vlad  ```
 * Check it out with curl
 ``` curl http://ip_of_server ```
+# 4. Create Config for Postgres
+* 1. Write playbook for posgres "postgres_playbook.yml"
+* 2. Write "vars/main","roles/createdb/handlers/main.yml", "roles/createdb/tasks/main.yml"
+* 3. Start playbook
+```  ansible-playbook postgres_playbook.yml -K -u vlad ``` 
+On steps of "Ensure database is created" it is failed, so I edit field in "/etc/postgresql/10/main/pg_hba.conf" file on Ubuntu server. I connect via SSH and change line with "local   all             postgres                                peer" to line "local   all             postgres                                trust". It's give be ability to go ahead. But in next point it failed "Ensure user has access to the database", so I commented it. How I try to solve the problem?
+* *  Change those line to md5 and try to sent with username encrypted password but failed.
+* * Try to create postgres user via Ansible(for peer logging), but also failed. So I thought to first install Postgre and Python. Maybe later I solve this problem.
+So, now, when command executed, I can be ensured that Postgre installed and db created? but without user.  
+
 

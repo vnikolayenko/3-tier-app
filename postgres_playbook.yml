@@ -1,0 +1,24 @@
+---
+#- name: Create postgres user
+#  hosts: web
+#  vars:
+#    users:
+#    - postgres
+#  tasks:
+#  - name: "Create user accounts and add users to groups"
+#    user:
+#      name: "{{ item }}"
+#      password: '$6$rTwb/tA/0J$Wey7G856CersCCQBVm6/mFgI7bkn4ooJBgOuGKjEuJp5qjd8quVsh96VNDGdIZeBXG/BqTE6h9p5e7uVKS13n1'
+#      groups: "www-data,postgres,vlad"
+#      state: present
+#    with_items: "{{ users }}" 
+- name: Create a PostgreSQL DB server
+  hosts: web
+  sudo: yes
+  sudo_user: root
+  remote_user: vlad
+  vars_files:
+    - vars/main.yml
+
+  roles:
+  - createdb
