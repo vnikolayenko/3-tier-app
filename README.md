@@ -6,7 +6,7 @@ My Steps
 # 1. Configure Ubuntu Server
 * 1. Install server (VirtualBox, Docker)
 * 2. Connect via ssh(from localhost) and do such commands
-*  Generate SSH keys 
+*  Generate SSH keyssh-keygen -t rsa -b 4096 -C "your_email@domain.com"
 ``` ssh-keygen -t rsa -b 4096 -C "your_email@domain.com" ```
 * Install Python Module
 ``` sudo apt-get install python-minimal -y ```
@@ -73,5 +73,8 @@ On steps of "Ensure database is created" it is failed, so I edit field in "/etc/
 * *  Change those line to md5 and try to sent with username encrypted password but failed.
 * * Try to create postgres user via Ansible(for peer logging), but also failed. So I thought to first install Postgre and Python. Maybe later I solve this problem.
 So, now, when command executed, I can be ensured that Postgre installed and db created? but without user.  
-
+# 5. Create Config to Python
+* At first, I try to repeat steps to get SSH coonnection, but can't copy id. Why? For password was permission denied, so I tried to edit "sshd_config" and restart ssh servise - it's not worked.
+* I losed ability to install packages via ansible, so all neede packages I installed manually.
+* Write playbook "python_wsgi.yml", but can't test it properly.
 
