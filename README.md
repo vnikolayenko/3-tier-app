@@ -72,9 +72,11 @@ Path to user "vlad" dir hardcoded by user name "vlad"!
 On steps of "Ensure database is created" it is failed, so I edit field in "/etc/postgresql/10/main/pg_hba.conf" file on Ubuntu server. I connect via SSH and change line with "local   all             postgres                                peer" to line "local   all             postgres                                trust". It's give be ability to go ahead. But in next point it failed "Ensure user has access to the database", so I commented it. How I try to solve the problem?
 * *  Change those line to md5 and try to sent with username encrypted password but failed.
 * * Try to create postgres user via Ansible(for peer logging), but also failed. So I thought to first install Postgre and Python. Maybe later I solve this problem.
-So, now, when command executed, I can be ensured that Postgre installed and db created? but without user.  
+So, now, when command executed, I can be ensured that Postgre installed and db created, but without user.  
 # 5. Create Config to Python
-* At first, I try to repeat steps to get SSH coonnection, but can't copy id. Why? For password was permission denied, so I tried to edit "sshd_config" and restart ssh servise - it's not worked.
+* At first, I try to repeat steps to get root SSH connection, but can't copy id. Why? For password was permission denied, so I tried to edit "sshd_config" and restart ssh servise - it's not worked.
 * I losed ability to install packages via ansible, so all neede packages I installed manually.
 * Write playbook "python_wsgi.yml", but can't test it properly.
-
+# 6. Create systemd file
+* Write systemd file "systemd/myproject.service" for automatic start of uWSGI wich serve Flask app after start of server.
+* Write playbook "systemd.yml" for coping service file and activating uWSGI service start after system booting.  

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: Copy systemd file
+      copy:
+        src: ./systemd/myproject.service
+        dest: /etc/systemd/system
+    - name: Activate created service
+      command: sudo systemctl start myproject 
+    - command: sudo systemctl enable myproject
