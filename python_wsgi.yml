@@ -2,7 +2,7 @@
 - hosts: all
 
   tasks:
-#      - name: Install components
+#    - name: Install components
 #      apt:
 #        name:
 #          - python3-pip
@@ -12,17 +12,17 @@
 #          - libffi-dev
 #          - python3-setuptools
 #        state: present
-      command: apt-get update && apt-get install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
-    - name: Conf VirtEnv
-      command: apt-get install python3-venv && mkdir myproject && cd myproject && python3.6 -m venv myprojectenv && source myprojectenv/bin/activate
-    - name: Install Flask and uWSGI
-      command: pip install wheel && pip install uwsgi flask
-    - name: Copy Python App
-      copy:
-        src: ./python/hello_world.py
-        dest: home/vlad/myproject
-    - name: Enable port 5000 and start App
-      command: sudo ufw allow 5000 
+#      command: apt-get update && apt-get install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
+#    - name: Conf VirtEnv
+#      command: apt-get install python3-venv && mkdir myproject && cd myproject && python3.6 -m venv myprojectenv && source myprojectenv/bin/activate
+#    - name: Install Flask and uWSGI
+#      command: pip install wheel && pip install uwsgi flask
+#    - name: Copy Python App
+#      copy:
+#        src: ./python/hello_world.py
+#        dest: home/vlad/myproject
+#    - name: Enable port 5000 and start App
+#      command: sudo ufw allow 5000 
     - name: Entry point to wsgi
       copy:
         src: ./python/wsgi.py

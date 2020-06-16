@@ -8,3 +8,8 @@
     - name: Activate created service
       command: sudo systemctl start myproject 
     - command: sudo systemctl enable myproject
+    - name: Ensure to enable all services
+      command: systemctl enable nginx
+    - command: service postgresql enable
+
+
